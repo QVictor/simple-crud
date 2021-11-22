@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Barryvdh\Debugbar\Facade as DebugBar;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    DebugBar::info('test');
     return view('welcome');
 });
