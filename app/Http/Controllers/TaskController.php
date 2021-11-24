@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Support\Facades\Date;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        dd('index');
+        $tasks = Task::paginate(15);
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
