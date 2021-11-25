@@ -3,32 +3,33 @@
 @section('title', 'Tasks')
 
 @section('content')
-    <table class="table caption-top md-3">
-        <caption>List of tasks</caption>
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>description</th>
-            <th>author</th>
-            <th>deadline</th>
-            <th>create</th>
-            <th>update</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($tasks as $task)
+    <div class="container">
+        <table class="table table-sm text-center">
+            <thead>
             <tr>
-                <th scope="row">{{$task->id}}</th>
-                <td>{{$task->name}}</td>
-                <td>{{mb_strimwidth($task->description, 0, 20).'...'}}</td>
-                <td>{{$task->author}}</td>
-                <td>{{$task->deadline}}</td>
-                <td>{{$task->created_at}}</td>
-                <td>{{$task->updated_at}}</td>
+                <th>id</th>
+                <th>name</th>
+                <th>description</th>
+                <th>author</th>
+                <th>deadline</th>
+                <th>edit</th>
+                <th>delete</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-    {{ $tasks->links() }}
+            </thead>
+            <tbody>
+            @foreach($tasks as $task)
+                <tr>
+                    <th scope="row">{{$task->id}}</th>
+                    <td><a href="{{route('tasks.show', $task)}}">{{$task->name}}</a></td>
+                    <td>{{mb_strimwidth($task->description, 0, 20).'...'}}</td>
+                    <td>{{$task->author}}</td>
+                    <td>{{$task->deadline}}</td>
+                    <td>@include('tasks.buttons.edit', ['task' => $task])</td>
+                    <td>@include('tasks.buttons.destroy', ['task' => $task])</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+        {{ $tasks->links() }}
+    </div>
 @endsection
