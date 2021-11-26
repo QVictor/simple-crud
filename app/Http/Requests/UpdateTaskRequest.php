@@ -21,10 +21,13 @@ class UpdateTaskRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:2|max:255',
+            'description' => 'required|min:3|max:255',
+            'author' => 'required|min:2|max:255',
+            'deadline' => 'required',
         ];
     }
 }

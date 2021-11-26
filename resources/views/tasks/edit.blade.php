@@ -12,6 +12,9 @@
                 <div class="col-sm-10">
                     <input name="name" value="{{old('name', isset($task) ? $task->name : null)}}" type="text" class="form-control"
                            id="name" placeholder="name task">
+                    @error('name')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3 row">
@@ -20,6 +23,9 @@
                     <textarea name="description" type="text"
                               class="form-control" id="description"
                               placeholder="description">{{old('description', isset($task) ? $task->description : null)}}</textarea>
+                    @error('description')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3 row">
@@ -27,6 +33,9 @@
                 <div class="col-sm-10">
                     <input name="author" value="{{old('author', isset($task) ? $task->author : null)}}" type="text"
                            class="form-control" id="author" placeholder="author">
+                    @error('author')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3 row">
@@ -34,6 +43,9 @@
                 <div class="col-sm-3">
                     <input name="deadline" value="{{old('deadline', isset($task) ? $task->deadline : null)}}" type="datetime-local"
                            class="form-control" id="deadline">
+                    @error('deadline')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="row mt-3">
@@ -42,14 +54,5 @@
                 </div>
             </div>
         </form>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </div>
 @endsection
