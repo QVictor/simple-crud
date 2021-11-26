@@ -94,10 +94,11 @@ class TaskController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('tasks.index')->with('danger', 'Deleted task ' . $task->name);
     }
 }

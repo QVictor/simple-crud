@@ -9,8 +9,14 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
 </head>
 <body>
-
-
+<div class="container">
+    @if(session('danger'))
+        <div class="alert alert-danger">{{session('danger')}}</div>
+    @endisset
+    @if(session('info'))
+        <div class="alert alert-info">{{session('info')}}</div>
+    @endisset
+</div>
 @yield('content')
 </body>
 </html>
