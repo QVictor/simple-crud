@@ -14,7 +14,8 @@ use Barryvdh\Debugbar\Facade as DebugBar;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::redirect('/', 'tasks');
 
 Route::resource('tasks', TaskController::class);
+
+

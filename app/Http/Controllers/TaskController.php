@@ -60,7 +60,19 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $task->deadline = self::deadlineToFormatHTML($task->deadline);
+        return view('tasks.edit', compact('task'));
+    }
+
+    private static function deadlineToFormatHTML($deadline): string
+    {
+        $deadline = Carbon::make($deadline);
+        return $deadline->format('Y-m-d') . 'T' . $deadline->format('H:i');
+    }
+
+    private static function deadlineToFormatBD($deadline): string
+    {
+        return Carbon::make($deadline)->format('Y-m-d H:i:s');
     }
 
     /**
@@ -72,7 +84,9 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $request->deadline = self::deadlineToFormatBD($request->deadline);
+        $task->update($request->only('name', 'description', 'author', 'deadline'));
+        return redirect()->route('tasks.index');
     }
 
     /**

@@ -12,7 +12,7 @@
             <li class="list-group-item">deadline - {{$task->deadline}}</li>
         </ul>
         <div class="card-body">
-            @include('tasks.buttons.back', ['task' => $task])
+            @include('tasks.buttons.back')
             @include('tasks.buttons.edit', ['task' => $task])
             @include('tasks.buttons.destroy', ['task' => $task])
         </div>
