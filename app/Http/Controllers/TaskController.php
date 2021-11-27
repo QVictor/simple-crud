@@ -28,7 +28,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -39,7 +39,8 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        Task::create($request->only('name', 'description', 'author', 'deadline'));
+        return redirect()->route('tasks.index')->with('info', 'Created task with name ' . $request->name);
     }
 
     /**
@@ -65,17 +66,6 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    private static function deadlineToFormatHTML($deadline): string
-    {
-        $deadline = Carbon::make($deadline);
-        return $deadline->format('Y-m-d') . 'T' . $deadline->format('H:i');
-    }
-
-    private static function deadlineToFormatBD($deadline): string
-    {
-        return Carbon::make($deadline)->format('Y-m-d H:i:s');
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,7 +77,7 @@ class TaskController extends Controller
     {
         $request->deadline = self::deadlineToFormatBD($request->deadline);
         $task->update($request->only('name', 'description', 'author', 'deadline'));
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('info', 'Update task ' . $task->name);
     }
 
     /**
@@ -100,5 +90,16 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect()->route('tasks.index')->with('danger', 'Deleted task ' . $task->name);
+    }
+
+    private static function deadlineToFormatHTML($deadline): string
+    {
+        $deadline = Carbon::make($deadline);
+        return $deadline->format('Y-m-d') . 'T' . $deadline->format('H:i');
+    }
+
+    private static function deadlineToFormatBD($deadline): string
+    {
+        return Carbon::make($deadline)->format('Y-m-d H:i:s');
     }
 }

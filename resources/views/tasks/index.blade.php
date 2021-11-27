@@ -30,6 +30,9 @@
             @endforeach
             </tbody>
         </table>
-        {{ $tasks->links() }}
+        <div class="container row">
+            <div class="col-sm-5">{{ $tasks->links() }}</div>
+            <div class="col-sm-7 text-end">@include('tasks.buttons.create')</div>
+        </div>
     </div>
 @endsection
