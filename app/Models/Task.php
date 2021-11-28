@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static create(array $only)
+ * @method static paginate(int $int)
+ * @property mixed|string deadline
+ * @property mixed name
+ */
 class Task extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;

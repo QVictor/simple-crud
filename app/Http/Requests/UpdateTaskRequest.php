@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed|string deadline
+ */
 class UpdateTaskRequest extends FormRequest
 {
     /**
@@ -11,7 +14,7 @@ class UpdateTaskRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
